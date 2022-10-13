@@ -8,53 +8,14 @@
     return (firstRandomRoll, secondRandomRoll, diceTotal);
 }
 
-// string DiceCombination(int firstRandomRoll, int secondRandomRoll, int diceTotal, int diceSides)
-// {
-//     string rollResults = string.Empty;
-
-//     if (diceTotal == 7 || diceTotal == 11)
-//     {
-//         rollResults = "Congrats, you've won!";
-//         return rollResults;
-//     }
-//     else if (firstRandomRoll == 1 && secondRandomRoll == 1)
-//     {
-//         rollResults = "Snake Eyes!";
-//         return rollResults;
-//     }
-//     else if (firstRandomRoll == 6 && secondRandomRoll == 6)
-//     {
-//         rollResults = "Box Cars";
-//         return rollResults;
-//     }
-//     else if (diceTotal == 2 || diceTotal == 3 || diceTotal == 12)
-//     {
-//         rollResults = "Craps!";
-//         return rollResults;
-//     }
-//     else if ((firstRandomRoll == 1 && secondRandomRoll == 2) || (secondRandomRoll == 1 && secondRandomRoll == 2))
-//     {
-//         rollResults = "Ace Deuce";
-//         return rollResults;
-//     }
-
-//     string defaultMessage = "Sorry, try again!";
-//     return defaultMessage;
-// }
-
-string SixSidedDice(int firstRandomRoll, int secondRandomRoll, int diceTotal)
+string SixSidedDiceCombo(int firstRandomRoll, int secondRandomRoll)
 {
     string rollResults = string.Empty;
     string defaultMessage = string.Empty;
 
-    if (diceTotal == 7 || diceTotal == 11)
+    if (firstRandomRoll == 1 && secondRandomRoll == 1)
     {
-        rollResults = "Congrats, you've won!";
-        return rollResults;
-    }
-    else if (firstRandomRoll == 1 && secondRandomRoll == 1)
-    {
-        rollResults = "Craps & Snake Eyes!";
+        rollResults = "Snake Eyes!";
         return rollResults;
     }
     else if (firstRandomRoll == 6 && secondRandomRoll == 6)
@@ -64,71 +25,56 @@ string SixSidedDice(int firstRandomRoll, int secondRandomRoll, int diceTotal)
     }
     else if ((firstRandomRoll == 1 && secondRandomRoll == 2) || (firstRandomRoll == 2 && secondRandomRoll == 1))
     {
-        rollResults = "Craps & Ace Deuce";
+        rollResults = "Ace Deuce";
         return rollResults;
     }
     else
     {
-        if (diceTotal == 2 || diceTotal == 3 || diceTotal == 12)
-        {
-            rollResults = "Craps!";
-            return rollResults;
-        }
-        else
-        {
-            return defaultMessage;
-        }
+        return defaultMessage;
     }
 }
 
-// string CrapsChecker(int diceTotal)
-// {
-//     string message = string.Empty;
-//     if (diceTotal == 2 || diceTotal == 3 || diceTotal == 12)
-//     {
-//         message = "Craps!";
-//         return message;
-//     }
-//     else
-//     {
-//         return message;
-//     }
-// }
+string SixSidedDiceTotal(int diceTotal)
+{
+    string rollResults = string.Empty;
+    string defaultMessage = string.Empty;
 
-// string FiveSidedDice(int firstRandomRoll, int secondRandomRoll, int diceTotal, int diceSides)
-// {
-//     string rollResults = string.Empty;
+    if (diceTotal == 7 || diceTotal == 11)
+    {
+        rollResults = "Congrats, you've won!";
+        return rollResults;
+    }
+    else if (diceTotal == 2 || diceTotal == 3 || diceTotal == 12)
+    {
+        rollResults = "Craps!";
+        return rollResults;
+    }
+    else
+    {
+        return defaultMessage;
+    }
+}
 
-//     if (diceTotal == 7 || diceTotal == 11)
-//     {
-//         rollResults = "Congrats, you've won!";
-//         return rollResults;
-//     }
-//     else if (firstRandomRoll == 1 && secondRandomRoll == 1)
-//     {
-//         rollResults = "Snake Eyes!";
-//         return rollResults;
-//     }
-//     else if (firstRandomRoll == 6 && secondRandomRoll == 6)
-//     {
-//         rollResults = "Box Cars";
-//         return rollResults;
-//     }
-//     else if (diceTotal == 2 || diceTotal == 3 || diceTotal == 12)
-//     {
-//         rollResults = "Craps!";
-//         return rollResults;
-//     }
-//     else if ((firstRandomRoll == 1 && secondRandomRoll == 2) || (secondRandomRoll == 1 && secondRandomRoll == 2))
-//     {
-//         rollResults = "Ace Deuce";
-//         return rollResults;
-//     }
+string TenSidedDice(int firstRandomRoll, int secondRandomRoll, int diceTotal)
+{
+    string rollResults = string.Empty;
+    string defaultMessage = string.Empty;
 
-//     string defaultMessage = "";
-//     return defaultMessage;
-// }
-
+    if (diceTotal == 20)
+    {
+        rollResults = "Congrats, double tens. You've won!";
+        return rollResults;
+    }
+    else if ((firstRandomRoll == 10 && secondRandomRoll == 5) || (firstRandomRoll == 5 && secondRandomRoll == 10))
+    {
+        rollResults = "15, my favorite number!";
+        return rollResults;
+    }
+    else
+    {
+        return defaultMessage;
+    }
+}
 
 void Menu()
 {
@@ -160,35 +106,43 @@ void Menu()
 
     Console.WriteLine($"Your first dice roll was {firstRandomRoll}");
     Console.WriteLine($"Your second dice roll was {secondRandomRoll}");
-    Console.WriteLine($"The total of your two rolls is: {diceTotal}");
+    Console.WriteLine($"The total of your two rolls is: {diceTotal}\n");
 
     if(diceSides == 6)
     {
-        string sixSides = SixSidedDice(firstRandomRoll, secondRandomRoll, diceTotal);
-        Console.WriteLine(sixSides);
+        string sixSidesCombo = SixSidedDiceCombo(firstRandomRoll, secondRandomRoll);
+        string sixSidesTotal = SixSidedDiceTotal(diceTotal);
+        Console.WriteLine(sixSidesCombo);
+        Console.WriteLine(diceTotal);
+    }
+    else if(diceSides == 10)
+    {
+        string tenSides = TenSidedDice(firstRandomRoll, secondRandomRoll, diceTotal);
+        Console.WriteLine(tenSides);
     }
 
     Console.WriteLine("Would you like to play again? [y]/[n]: ");
-    string menuChoice = Console.ReadLine().ToLower();
-    if (menuChoice == "y" || menuChoice == "yes")
+    do
     {
-        Menu();
-    }
-    else if (menuChoice == "n" || menuChoice == "no")
-    {
-        Environment.Exit(0);
-    }
-}
-// else if (diceSides == 5)
-// {
-//     string fiveSides = FiveSidedDice(firstRandomRoll, secondRandomRoll, diceTotal, diceSides);
-//     Console.WriteLine(fiveSides);
-// }
-// else if (diceSides == 4)
-// {
-//     string fourSides = FourSidedDice(firstRandomRoll, secondRandomRoll, diceTotal, diceSides);
-//     Console.WriteLine(fourSides);
-//  }
+        isValidInput = false;
 
+        string menuChoice = Console.ReadLine().ToLower();
+
+        if (menuChoice == "y" || menuChoice == "yes")
+        {
+            Console.Clear();
+            Menu();
+        }
+        else if (menuChoice == "n" || menuChoice == "no")
+        {
+            Environment.Exit(0);
+        }
+        else
+        {
+            Console.Clear();
+            Console.WriteLine("Invalid Input. Would you like to play again? Please enter either a 'y' or an 'n'.\n");
+        }
+    } while (isValidInput == false);
+}
 
 Menu();
