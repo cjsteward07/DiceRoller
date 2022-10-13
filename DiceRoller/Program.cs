@@ -3,7 +3,7 @@
     Random random = new Random();
     int firstRandomRoll = random.Next(1, diceSides + 1);
     int secondRandomRoll = random.Next(1, diceSides + 1);
-    int diceTotal =  firstRandomRoll + secondRandomRoll;
+    int diceTotal = firstRandomRoll + secondRandomRoll;
 
     return (firstRandomRoll, secondRandomRoll, diceTotal);
 }
@@ -100,7 +100,7 @@ void Menu()
         }
     } while (isValidInput == false);
 
-    switch(menuChoice)
+    switch (menuChoice)
     {
         case 1:
             Console.Clear();
@@ -149,7 +149,7 @@ void Menu()
             Console.WriteLine("Roll total = 15: '15, my favorite number!'\n\n");
             Console.ResetColor();
 
-            do 
+            do
             {
                 Console.WriteLine("Please enter the number of sides for the dice:");
                 isValidInput = int.TryParse(Console.ReadLine(), out diceSides);
@@ -195,7 +195,7 @@ void Menu()
     Console.WriteLine($"Your second dice roll was {secondRandomRoll}");
     Console.WriteLine($"The total of your two rolls is: {diceTotal}\n");
 
-    if(diceSides == 6)
+    if (diceSides == 6)
     {
         string sixSidesCombo = SixSidedDiceCombo(firstRandomRoll, secondRandomRoll);
         string sixSidesTotal = SixSidedDiceTotal(diceTotal);
@@ -204,7 +204,7 @@ void Menu()
         Console.WriteLine(sixSidesTotal);
         Console.ResetColor();
     }
-    else if(diceSides == 10)
+    else if (diceSides == 10)
     {
         string tenSides = TenSidedDice(firstRandomRoll, secondRandomRoll, diceTotal);
         Console.ForegroundColor = ConsoleColor.Yellow;
